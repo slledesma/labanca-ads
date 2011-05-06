@@ -7,8 +7,22 @@
   <%= csrf_meta_tag %>
 </head>
 <body>
+<p class='notice'><%= notice%></p>
+<p class='alert'><%= alert%></p>
 
+<div id='user_nav'>
+<% if user_signed_in? %>
+	<%= "Fiefeeeniiiido fieja! #{current_user.email}" %>
+	|
+	<%= link_to "Sign Out", destroy_user_session_path %>
+<% else %>
+	<%= link_to "Sign Up", new_user_registration_path %>
+	|	
+	<%= link_to "Sign In", new_user_session_path %>
+<% end %>
+</div>
 <%= yield %>
-<p> <%= @days.days.from_now %></p>
+
+<p> Falta para el lanzamiento <%= @days.days.from_now %></p>
 </body>
 </html>
