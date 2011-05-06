@@ -44,7 +44,8 @@ class AdvertisementsController < ApplicationController
   # POST /advertisements.xml
   def create
     @advertisement = Advertisement.new(params[:advertisement])
-
+    @advertisement.user = current_user
+ 	
     respond_to do |format|
       if @advertisement.save
         format.html { redirect_to(@advertisement, :notice => 'Advertisement was successfully created.') }
